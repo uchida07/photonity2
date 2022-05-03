@@ -13,6 +13,9 @@
 ### 主な利用シーン
 <自分の撮った写真を投稿し評価や批評をして同じ利用者とコミュニケーションがとれる>
 
+## 実装機能リストURL
+< https://docs.google.com/spreadsheets/d/1ush6Fl5v6TKZSuM0ShVU6zwkDTOvgSF4TvGa6sV0bVw/edit?usp=sharing >
+
 ## 設計書
 <...>
 
