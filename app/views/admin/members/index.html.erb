@@ -1,0 +1,24 @@
+<div>
+  <h1>会員一覧</h1>
+  <% @members.each do |members| %>
+    <table>
+      <tr>
+        <th>
+        </th>
+        <th>プロフィール名</th>
+        <th>自己紹介</th>
+      </tr>
+      <tr>
+        <td>
+          <% if members.image.attached? %>
+            <%= image_tag members.image, size: "40x40" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "40x40" %>
+          <% end %>
+        </td>
+        <td><%= members.account_name %></th>
+        <td><%= members.introduction %></th>
+      </tr>
+    </table>
+  <% end %>
+</div>

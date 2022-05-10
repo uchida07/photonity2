@@ -1,0 +1,12 @@
+<h1>会員一覧</h1>
+<% @members.each do |members| %>
+  <% if members.image.attached? %>
+    <%= image_tag members.image, size: "200x200" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "200x200" %>
+  <% end %>
+
+  <p><%= members.account_name %></p>
+  <p><%= members.introduction %></p>
+  
+<% end %>

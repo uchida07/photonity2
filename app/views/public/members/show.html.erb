@@ -1,0 +1,48 @@
+<div>
+  <h1>プロフィール情報</h1>
+  <div>
+    <% if @member.profile_image.attached? %>
+      <%= image_tag @member.profile_image, size: "200x200" %>
+    <% else %>
+      <%= image_tag 'no_image', size: "200x200" %>
+    <% end %>
+    <p>アカウント名</br><%= @member.account_name %></p>
+    <p>自己紹介</br><%= @member.introduction %></p>
+    <p><%= link_to "新規投稿", new_post_path %></p>
+    <p><%= link_to "プロフィール編集", edit_member_path %></p>
+  </div>
+  <div>
+    <h3>投稿一覧</h3>
+    <% @member.posts.each do |members| %>
+      <table>
+        <tr>
+          <td><%= members.title %></td>
+          <td><%= members.introduction %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+  <div>
+    <h3>返信・コメント一覧</h3>
+    <%# @member.replies.each do |member| %>
+      <table>
+        <tr>
+          <td><%#= member.response %></td>
+        </tr>
+      </table>
+    <%# end %>
+  </div>
+  <div>
+    <h3>いいね一覧</h3>
+    <%# @member.posts.favorite.each do |member| %>
+      <table>
+        <tr>
+          <td><%#= member.title %></td>
+          <td><%#= member.introduction %></td>
+        </tr>
+      </table>
+    <%# end %>
+  </div>
+
+
+</div>
