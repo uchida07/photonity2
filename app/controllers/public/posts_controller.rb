@@ -3,12 +3,18 @@ class Public::PostsController < ApplicationController
     @post = Post.new
   end
 
+  def search_tag
+     @post = Post.new
+     @posts = Post.search(params[:keyword])
+  end
+   
   def index
     @posts = Post.all
   end
 
   def show
     @post = Post.find(params[:id])
+    @reply = Reply.new
   end
 
   def create
@@ -20,7 +26,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :introduction, :machine, :image)
+    params.require(:post).permit(:title, :introduction, :machine, :image, :tag)
   end
 
 end

@@ -1,0 +1,21 @@
+<h1>タグ一覧</h1>
+<% @posts.each do |posts| %>
+  <table>
+    <tr>
+      <th>
+        <% if posts.member.profile_image.attached? %>
+          <%= image_tag posts.member.profile_image, size: "40x40" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "40x40" %>
+        <% end %>
+      </th>
+      <th>
+        <%= posts.title %>
+      </th>
+      <th>
+        <%= posts.introduction %>
+
+      </th>
+    </tr>
+  </table>
+<% end %>

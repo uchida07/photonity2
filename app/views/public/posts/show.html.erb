@@ -10,12 +10,38 @@
     </p>
     <p><%= @post.member.account_name %></p>
   </div>
+
+
+  <div>
+    <%= form_with model: [@post, @reply] do |f| %>
+      <%= f.text_area :response, rows: '5', placeholder: "コメントをここに" %>
+      <%= f.submit "送信する" %>
+    <% end %>
+  </div>
+
   <div>
     <p><%= link_to "返信・コメントをする" %></p>
   </div>
   <div>
     <p><%= image_tag @post.image, size: "300x225" %></p>
   </div>
+
+  <div>
+    <% if @post.favorited_by?(current_member) %>
+    <p>
+      <%= link_to post_favorites_path(@post), method: :delete do %>
+        <%= @post.favorites.count %> いいね👍
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_favorites_path(@post), method: :post do %>
+        <%= @post.favorites.count %> いいね👍
+      <% end %>
+    </p>
+  <% end %>
+  </div>
+
   <div>
     <table>
       <tr>
@@ -27,10 +53,28 @@
         <td><%= @post.machine %></td>
       </tr>
       <tr>
+        <th>タグ</th>
+        <td>
+          <%= link_to @post.tag, search_tag_path(keyword: @post.tag) %>
+        </td>
+      </tr>
+      <tr>
         <th>内容</th>
         <td><%= @post.introduction %></td>
       </tr>
     </table>
 
+  </div>
+  <div>
+    <p>コメント件数：<%= @post.replies.count %></p>
+    <% @post.replies.each do |reply| %>
+      <table>
+        <tr>
+          <td><%= image_tag reply.member.profile_image, size: "40x40" %></td>
+          <td><%= reply.member.account_name %></td>
+          <td><%= reply.response %><%= reply.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+      </table>
+    <% end %>
   </div>
 </div>

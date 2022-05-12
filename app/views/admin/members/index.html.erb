@@ -10,8 +10,8 @@
       </tr>
       <tr>
         <td>
-          <% if members.image.attached? %>
-            <%= image_tag members.image, size: "40x40" %>
+          <% if members.profile_image.attached? %>
+            <%= image_tag members.profile_image, size: "40x40" %>
           <% else %>
             <%= image_tag 'no_image', size: "40x40" %>
           <% end %>

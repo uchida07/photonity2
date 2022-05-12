@@ -16,13 +16,6 @@
     <% @member.posts.each do |members| %>
       <table>
         <tr>
-          <td>
-            <% if @member.profile_image.attached? %>
-              <%= image_tag @member.profile_image, size: "40x40" %>
-            <% else %>
-              <%= image_tag 'no_image', size: "40x40" %>
-            <% end %>
-          </td>
           <td><%= members.title %></td>
           <td><%= members.introduction %></td>
         </tr>
@@ -34,12 +27,6 @@
     <% @member.replies.each do |member| %>
       <table>
         <tr>
-          <td>
-            <% if @member.profile_image.attached? %>
-              <%= image_tag @member.profile_image, size: "40x40" %>
-            <% else %>
-              <%= image_tag 'no_image', size: "40x40" %>
-            <% end %>
           <td><%= member.response %></td>
         </tr>
       </table>
@@ -47,21 +34,14 @@
   </div>
   <div>
     <h3>いいね一覧</h3>
-    <% @member.favorites.each do |members| %>
+    <%# @member.posts.favorite.each do |member| %>
       <table>
         <tr>
-          <td>
-            <% if members.post.member.profile_image.attached? %>
-              <%= image_tag members.post.member.profile_image, size: "40x40" %>
-            <% else %>
-              <%= image_tag 'no_image', size: "40x40" %>
-            <% end %>
-          <td><%= members.post.member.account_name %></td>
-          <td><%= members.post.title %></td>
-          <td><%= members.post.introduction %></td>
+          <td><%#= member.title %></td>
+          <td><%#= member.introduction %></td>
         </tr>
       </table>
-    <% end %>
+    <%# end %>
   </div>
 
 
