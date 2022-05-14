@@ -3,8 +3,6 @@ class Post < ApplicationRecord
   belongs_to :member, optional: true
   has_many :replies, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :post_tags,dependent: :destroy
-  has_many :tags,through: :post_tags
   def favorited_by?(member)
     favorites.exists?(member_id: member.id)
   end

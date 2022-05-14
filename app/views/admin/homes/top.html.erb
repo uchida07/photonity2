@@ -1,12 +1,13 @@
 <h1>投稿一覧</h1>
 <% @posts.each do |posts| %>
+  <%= link_to admin_post_path(posts.id) do %>
   <table>
     <tr>
       <th>
         <% if posts.member.profile_image.attached? %>
-          <%= image_tag posts.member.profile_image, size: "100x100" %>
+          <%= image_tag posts.member.profile_image, size: "40x40" %>
         <% else %>
-          <%= image_tag 'no_image', size: "100x100" %>
+          <%= image_tag 'no_image', size: "40x40" %>
         <% end %>
       </th>
       <th>
@@ -17,4 +18,5 @@
       </th>
     </tr>
   </table>
+  <% end %>
 <% end %>

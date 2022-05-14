@@ -25,6 +25,8 @@
           </td>
           <td><%= members.title %></td>
           <td><%= members.introduction %></td>
+          <td><%= link_to "編集",edit_post_path(members.id)%></td>
+          <td><%= link_to "削除",member_path(members.id), method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
         </tr>
       </table>
     <% end %>
@@ -41,6 +43,7 @@
               <%= image_tag 'no_image', size: "40x40" %>
             <% end %>
           <td><%= member.response %></td>
+          <td><%= link_to "削除", post_reply_path(member.post, member), method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
         </tr>
       </table>
     <% end %>

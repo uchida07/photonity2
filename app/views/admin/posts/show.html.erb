@@ -3,9 +3,9 @@
   <div>
     <p>
       <% if @post.member.profile_image.attached? %>
-        <%= image_tag @post.member.profile_image, size: "100x100" %>
+        <%= image_tag @post.member.profile_image, size: "40x40" %>
       <% else %>
-        <%= image_tag 'no_image', size: "200x200" %>
+        <%= image_tag 'no_image', size: "40x40" %>
       <% end %>
     </p>
     <p><%= @post.member.account_name %></p>
@@ -24,10 +24,15 @@
         <td><%= @post.machine %></td>
       </tr>
       <tr>
+        <th>タグ</th>
+        <td>
+          <%= @post.tag %>
+        </td>
+      </tr>
+      <tr>
         <th>内容</th>
         <td><%= @post.introduction %></td>
       </tr>
     </table>
-
   </div>
 </div>

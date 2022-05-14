@@ -1,0 +1,29 @@
+<div>
+  <h1>投稿編集画面</h1>
+    <%= form_with model: @post do |f| %>
+    <table>
+      <tr>
+        <th>画像</th>
+        <th><%= f.file_field :image,accept: "image/*" %></th>
+      </tr>
+      <tr>
+        <th>タイトル</th>
+        <th><%= f.text_field :title %></th>
+      </tr>
+      <tr>
+        <th>使用機材</th>
+        <th><%= f.text_field :machine %></th>
+      </tr>
+      <tr>
+        <th>タグ</th>
+        <th><%= f.text_field :tag %></th>
+      </tr>
+      <tr>
+        <th>投稿本文</th>
+        <th><%= f.text_area :introduction %></th>
+      </tr>
+      </table>
+      <%= f.submit "更新" %>
+    <% end %>
+
+</div>

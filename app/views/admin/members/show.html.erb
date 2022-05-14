@@ -8,16 +8,23 @@
     <% end %>
     <p>アカウント名</br><%= @member.account_name %></p>
     <p>自己紹介</br><%= @member.introduction %></p>
-    <p><%= link_to "新規投稿", new_post_path %></p>
-    <p><%= link_to "プロフィール編集", edit_member_path %></p>
   </div>
   <div>
     <h3>投稿一覧</h3>
     <% @member.posts.each do |members| %>
       <table>
         <tr>
+          <td>
+            <% if @member.profile_image.attached? %>
+              <%= image_tag @member.profile_image, size: "40x40" %>
+            <% else %>
+              <%= image_tag 'no_image', size: "40x40" %>
+            <% end %>
+          </td>
           <td><%= members.title %></td>
           <td><%= members.introduction %></td>
+          <td><%= link_to "編集",edit_post_path(members.id)%></td>
+          <td><%= link_to "削除",admin_member_path(members.id), method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
         </tr>
       </table>
     <% end %>
@@ -27,21 +34,35 @@
     <% @member.replies.each do |member| %>
       <table>
         <tr>
+          <td>
+            <% if @member.profile_image.attached? %>
+              <%= image_tag @member.profile_image, size: "40x40" %>
+            <% else %>
+              <%= image_tag 'no_image', size: "40x40" %>
+            <% end %>
           <td><%= member.response %></td>
+          <td><%= link_to "削除", admin_post_reply_path(member.post, member), method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
         </tr>
       </table>
     <% end %>
   </div>
   <div>
     <h3>いいね一覧</h3>
-    <%# @member.posts.favorite.each do |member| %>
+    <% @member.favorites.each do |members| %>
       <table>
         <tr>
-          <td><%#= member.title %></td>
-          <td><%#= member.introduction %></td>
+          <td>
+            <% if members.post.member.profile_image.attached? %>
+              <%= image_tag members.post.member.profile_image, size: "40x40" %>
+            <% else %>
+              <%= image_tag 'no_image', size: "40x40" %>
+            <% end %>
+          <td><%= members.post.member.account_name %></td>
+          <td><%= members.post.title %></td>
+          <td><%= members.post.introduction %></td>
         </tr>
       </table>
-    <%# end %>
+    <% end %>
   </div>
 
 

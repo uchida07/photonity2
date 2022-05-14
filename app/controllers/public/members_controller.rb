@@ -17,6 +17,12 @@ class Public::MembersController < ApplicationController
     redirect_to member_path(@member.id)
   end
 
+  def destroy
+    @member = Post.find(params[:id])
+    @member.destroy
+    redirect_to member_path(current_member.id)
+  end
+
   private
   def member_params
     params.require(:member).permit(:account_name, :email, :introduction, :profile_image)

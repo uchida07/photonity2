@@ -6,6 +6,12 @@ class Public::RepliesController < ApplicationController
     comment.save
     redirect_to post_path(post.id)
   end
+
+  def destroy
+    Reply.find(params[:id]).destroy
+    redirect_to member_path(current_member.id)
+  end
+
   private
   def reply_params
     params.require(:reply).permit(:response)
