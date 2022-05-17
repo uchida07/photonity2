@@ -1,5 +1,9 @@
 class Admin::HomesController < ApplicationController
   def top
-    @posts = Post.all
+    if admin_signed_in?
+      @posts = Post.all
+    else
+    redirect_to new_admin_session_path
+    end
   end
 end

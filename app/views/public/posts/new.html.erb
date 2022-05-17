@@ -1,29 +1,32 @@
-<div>
-  <h1>新規投稿画面</h1>
-    <%= form_with model: @post do |f| %>
-    <table>
-      <tr>
-        <th>画像</th>
-        <th><%= f.file_field :image,accept: "image/*" %></th>
-      </tr>
-      <tr>
-        <th>タイトル</th>
-        <th><%= f.text_field :title %></th>
-      </tr>
-      <tr>
-        <th>使用機材</th>
-        <th><%= f.text_field :machine %></th>
-      </tr>
-      <tr>
-        <th>タグ</th>
-        <th><%= f.text_field :tag %></th>
-      </tr>
-      <tr>
-        <th>投稿本文</th>
-        <th><%= f.text_area :introduction %></th>
-      </tr>
-      </table>
-      <%= f.submit "投稿" %>
-    <% end %>
-
+<div class = "container">
+  <div class = "pt-5">
+    <div class = "text-center">
+      <h1>新規投稿画面</h1>
+      <div class="pt-3">
+        <%= form_with model: @post do |f| %>
+             <div>
+               <div>画像</div>
+               <div class="pl-5"><%= f.file_field :image,accept: "image/*" %></div>
+            </div>
+            <div class="pt-3">
+              <div>タイトル</div>
+              <div><%= f.text_field :title %></div>
+            </div>
+            <div class="pt-3">
+              <div>使用機材</div>
+              <div><%= f.text_field :machine %></div>
+            </div>
+            <div class="pt-3">
+              <div>タグ</div>
+              <div><%= f.text_field :tag %></div>
+            </div>
+            <div class="pt-3">
+              <div>投稿本文</div>
+              <div><%= f.text_area :introduction %></div>
+            </div>
+          <%= f.submit "投稿" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

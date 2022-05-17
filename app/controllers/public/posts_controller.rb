@@ -1,6 +1,10 @@
 class Public::PostsController < ApplicationController
   def new
-    @post = Post.new
+    if member_signed_in?
+      @post = Post.new
+    else
+      redirect_to new_member_session_path
+    end
   end
 
   def search_tag
@@ -11,6 +15,7 @@ class Public::PostsController < ApplicationController
 
   def tag_index
     @tag = Post.all
+
   end
 
   def index
@@ -24,6 +29,9 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    if @post.member != current_member
+      redirect_to posts_path
+    end
   end
 
   def create

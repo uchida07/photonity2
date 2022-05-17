@@ -1,38 +1,80 @@
-<div>
-  <h1>投稿詳細画面</h1>
+<div class = "container">
+  <div class = "pt-5">
+  <h1><i class="fas fa-image"></i>投稿詳細画面</h1>
   <div>
-    <p>
-      <% if @post.member.profile_image.attached? %>
-        <%= image_tag @post.member.profile_image, size: "40x40" %>
-      <% else %>
-        <%= image_tag 'no_image', size: "40x40" %>
-      <% end %>
-    </p>
-    <p><%= @post.member.account_name %></p>
+    <div class = "row">
+      <div class="col-lg-4">
+        <div class = "text-center">
+          <div>
+            <p>
+              <%= link_to admin_member_path(@post.member.id) do %>
+              <% if @post.member.profile_image.attached? %>
+                <%= image_tag @post.member.profile_image, size: "100x100" %>
+              <% else %>
+                <%= image_tag 'no_image', size: "200x200" %>
+              <% end %>
+              <% end %>
+            </p>
+            <p><i class="fas fa-user"></i><%= @post.member.account_name %></p>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class = "text-center">
+          <% if @post.image.attached? %>
+            <%= image_tag @post.image, size: "400x300" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "400x300" %>
+          <% end %>
+        </div>
+        <div class = "text-right">
+          <%= @post.favorites.count %> いいね<i class="fas fa-thumbs-up"></i>
+        </div>
+
+        <div>
+          <table class="table table-borderless">
+            <tr>
+              <th scope="col" style="width: 20%">タイトル</th>
+              <td><%= @post.title %></td>
+            </tr>
+            <tr>
+              <th>使用機械</th>
+              <td><%= @post.machine %></td>
+            </tr>
+            <tr>
+              <th>タグ</th>
+              <td>
+                #<%=  @post.tag %>
+              </td>
+            </tr>
+            <tr>
+              <th>内容</th>
+              <td><%= @post.introduction %></td>
+            </tr>
+          </table>
+        </div>
+        <div>
+          <p>コメント件数<i class="fas fa-comments"></i>：<%= @post.replies.count %></p>
+          <table class="table table-bordered">
+            <% @post.replies.each do |reply| %>
+              <tr>
+                <td class="text-center" class="align-middle" scope="col" style="width: 15%">
+                  <% if reply.member.profile_image.attached? %>
+                    <%= image_tag reply.member.profile_image, size: "40x40" %>
+                  <% else %>
+                    <%= image_tag 'no_image', size: "40x40" %>
+                  <% end %>
+                  </br><%= reply.member.account_name %>
+                </td>
+                <td class="align-middle"><%= reply.response %></td>
+                <td class="align-middle" scope="col" style="width: 20%"><%= reply.created_at.strftime('%Y/%m/%d') %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
-  <div>
-    <p><%= image_tag @post.image, size: "300x225" %></p>
-  </div>
-  <div>
-    <table>
-      <tr>
-        <th>タイトル</th>
-        <td><%= @post.title %></td>
-      </tr>
-      <tr>
-        <th>使用機械</th>
-        <td><%= @post.machine %></td>
-      </tr>
-      <tr>
-        <th>タグ</th>
-        <td>
-          <%= @post.tag %>
-        </td>
-      </tr>
-      <tr>
-        <th>内容</th>
-        <td><%= @post.introduction %></td>
-      </tr>
-    </table>
   </div>
 </div>

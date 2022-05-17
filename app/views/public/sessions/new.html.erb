@@ -1,24 +1,41 @@
-<h2>ログイン画面</h2>
+<div class="background">
+<div class = "container">
+    <div class = "pt-5">
+      <div class = "text-center">
+        <h2>ログイン画面</h2>
+        <div class="pt-3">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="pt-3">
+              <div class="field">
+                <%= f.label "アカウント名" %><br>
+                <%= f.text_field :account_name %>
+              </div>
+            </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label "アカウント名" %><br>
-    <%= f.text_field :account_name %>
-  </div>
+            <div class="pt-3">
+              <div class="field">
+                <%= f.label :"メールアドレス" %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              </div>
+            </div>
 
-  <div class="field">
-    <%= f.label :"メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+            <div class="pt-3">
+              <div class="field">
+                <%= f.label :"パスワード" %><br />
+                <%= f.password_field :password, autocomplete: "current-password" %>
+              </div>
+            </div>
 
-  <div class="field">
-    <%= f.label :"パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+            <div class="pt-3">
+              <div class="actions">
+                <%= f.submit "ログイン" %>
+              </div>
+            </div>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+          <% end %>
+        </div>
+        <%= render "public/shared/links" %>
+      </div>
+    </div>
+</div>
+</div>

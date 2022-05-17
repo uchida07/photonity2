@@ -1,21 +1,32 @@
-<h1>検索タグ投稿一覧</h1>
-<% @posts.each do |posts| %>
-  <table>
-    <tr>
-      <th>
-        <% if posts.member.profile_image.attached? %>
-          <%= image_tag posts.member.profile_image, size: "40x40" %>
-        <% else %>
-          <%= image_tag 'no_image', size: "40x40" %>
-        <% end %>
-      </th>
-      <th>
-        <%= posts.title %>
-      </th>
-      <th>
-        <%= posts.introduction %>
-
-      </th>
-    </tr>
+<div class="background">
+<div class = "container">
+  <div class = "pt-5">
+    <h1><i class="fas fa-tags"></i></i>検索タグ投稿一覧</h1>
+  </div>
+  <table class="table">
+    <% @posts.each do |posts| %>
+      <tr>
+        <th>
+          <%= link_to post_path(posts.id), class:"link-black" do %>
+            <% if posts.member.profile_image.attached? %>
+              <%= image_tag posts.member.profile_image, size: "40x40" %>
+            <% else %>
+              <%= image_tag 'no_image', size: "40x40" %>
+            <% end %>
+          <% end %>
+        </th>
+        <th>
+          <%= link_to post_path(posts.id), class:"link-black" do %>
+            <%= posts.title %>
+          <% end %>
+        </th>
+        <th>
+          <%= link_to post_path(posts.id), class:"link-black" do %>
+            <%= posts.introduction %>
+          <% end %>
+        </th>
+      </tr>
+    <% end %>
   </table>
-<% end %>
+  </div>
+  </div>

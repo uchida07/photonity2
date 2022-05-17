@@ -1,11 +1,20 @@
-<div>
-  <p><strong>Photonity</strong>へようこそ</br>
+<div class="background">
+  <div class="main">
+  <div class="text-center" >
+    <div class="text-light">
+    <div class="mt-4">
+    <h3><strong><i class="fas fa-camera-retro"></i>Photonity</strong>へようこそ</br>
     ここはカメラに関する技術向上のためのコミュニティーサイトです。</br>
-    質問や批評してほしい写真を投稿してみましょう。</p>
-  <p>いろいろな人の意見を参考にしてみましょう！</p>
+    質問や批評してほしい写真を投稿してみましょう。</h3>
+    <h3>いろいろな人の意見を参考にしてみましょう！</h3>
+    </div>
+    </div>
+  </div>
+  <div class="text-center" >
+    <div class="text-light">
+    <p class="pt-3">初めての方</br>→<%= link_to "さっそく使ってみる", posts_path, class:"link" %></p>
+    <p>アカウントをお持ちの方</br>→<%= link_to "ログイン" , new_member_session_path, class:"link" %></p>
+    <p>新しくアカウントを登録する</br>→<%= link_to "新規登録", new_member_registration_path, class:"link" %></p>
+  </div>
 </div>
-
-<div>
-  <p>初めての方</br>→<%= link_to "さっそく使ってみる", root_path %></p>
-  <p>アカウントをお持ちの方</br>→<%= link_to "ログイン" , new_member_session_path %></p>
-  <p>新しくアカウントを登録する</br>→<%= link_to "新規登録", new_member_registration_path %></p></div>
+</div>

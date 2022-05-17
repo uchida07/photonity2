@@ -1,12 +1,20 @@
-<h1>会員一覧</h1>
-<% @members.each do |members| %>
-  <% if members.profile_image.attached? %>
-    <%= image_tag members.profile_image, size: "200x200" %>
-  <% else %>
-    <%= image_tag 'no_image', size: "200x200" %>
-  <% end %>
-
-  <p><%= members.account_name %></p>
-  <p><%= members.introduction %></p>
-
-<% end %>
+<div class = "container">
+  <div class = "pt-5">
+  <h1>会員一覧</h1>
+  </div>
+  <table class="table">
+  <% @members.each do |members| %>
+      <tr>
+        <td>
+          <% if members.profile_image.attached? %>
+            <%= image_tag members.profile_image, size: "60x60" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "60x60" %>
+          <% end %>
+        </td>
+        <td ><p>#プロフィール名</p><%= members.account_name %></td>
+        <td><p>#自己紹介</p><%= members.introduction %></td>
+        </tr>
+        <% end %>
+    </table>
+</div>

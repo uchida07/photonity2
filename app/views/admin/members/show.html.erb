@@ -1,69 +1,96 @@
-<div>
-  <h1>プロフィール情報</h1>
-  <div>
-    <% if @member.profile_image.attached? %>
-      <%= image_tag @member.profile_image, size: "200x200" %>
-    <% else %>
-      <%= image_tag 'no_image', size: "200x200" %>
-    <% end %>
-    <p>アカウント名</br><%= @member.account_name %></p>
-    <p>自己紹介</br><%= @member.introduction %></p>
+<div class = "container">
+  <div class = "pt-5">
+    <h1><i class="fas fa-user-circle"></i>プロフィール情報</h1>
   </div>
-  <div>
-    <h3>投稿一覧</h3>
-    <% @member.posts.each do |members| %>
-      <table>
-        <tr>
-          <td>
-            <% if @member.profile_image.attached? %>
-              <%= image_tag @member.profile_image, size: "40x40" %>
-            <% else %>
-              <%= image_tag 'no_image', size: "40x40" %>
-            <% end %>
-          </td>
-          <td><%= members.title %></td>
-          <td><%= members.introduction %></td>
-          <td><%= link_to "編集",edit_post_path(members.id)%></td>
-          <td><%= link_to "削除",admin_member_path(members.id), method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
-        </tr>
-      </table>
-    <% end %>
-  </div>
-  <div>
-    <h3>返信・コメント一覧</h3>
-    <% @member.replies.each do |member| %>
-      <table>
-        <tr>
-          <td>
-            <% if @member.profile_image.attached? %>
-              <%= image_tag @member.profile_image, size: "40x40" %>
-            <% else %>
-              <%= image_tag 'no_image', size: "40x40" %>
-            <% end %>
-          <td><%= member.response %></td>
-          <td><%= link_to "削除", admin_post_reply_path(member.post, member), method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
-        </tr>
-      </table>
-    <% end %>
-  </div>
-  <div>
-    <h3>いいね一覧</h3>
-    <% @member.favorites.each do |members| %>
-      <table>
-        <tr>
-          <td>
-            <% if members.post.member.profile_image.attached? %>
-              <%= image_tag members.post.member.profile_image, size: "40x40" %>
-            <% else %>
-              <%= image_tag 'no_image', size: "40x40" %>
-            <% end %>
-          <td><%= members.post.member.account_name %></td>
-          <td><%= members.post.title %></td>
-          <td><%= members.post.introduction %></td>
-        </tr>
-      </table>
-    <% end %>
-  </div>
+  <div class = "row">
+    <div class="col-lg-4">
+      <div class = "text-center">
+        <% if @member.profile_image.attached? %>
+          <%= image_tag @member.profile_image, size: "200x200" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "200x200" %>
+        <% end %>
+        <p>アカウント名</br><%= @member.account_name %></p>
+        <p>自己紹介</br><%= @member.introduction %></p>
 
-
+        <p>
+          <% if member_signed_in? && current_member.id == @member.id %>
+            <p><i class="fas fa-plus-circle"></i><%= link_to "新規投稿", new_post_path %></p>
+            <i class="fas fa-user-cog"></i><%= link_to "プロフィール編集", edit_member_path %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div>
+        <h3><i class="fas fa-list"></i>投稿一覧</h3>
+        <table class="table">
+          <% @member.posts.each do |members| %>
+            <tr>
+              <td>
+                <%= link_to admin_post_path(members.id) do %>
+                  <% if @member.profile_image.attached? %>
+                    <%= image_tag @member.profile_image, size: "40x40" %>
+                  <% else %>
+                    <%= image_tag 'no_image', size: "40x40" %>
+                  <% end %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to admin_post_path(members.id) do %>
+                  <%= members.title %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to admin_post_path(members.id) do %>
+                  <%= members.introduction %>
+                <% end %>
+              </td>
+              <td><%= link_to "削除",admin_member_path(members.id), method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div>
+        <h3><i class="fas fa-paper-plane"></i>返信・コメント一覧</h3>
+        <table class="table">
+          <% @member.replies.each do |member| %>
+            <tr>
+              <td>
+                <%= link_to post_path(member.post.id) do %>
+                <% if @member.profile_image.attached? %>
+                  <%= image_tag @member.profile_image, size: "40x40" %>
+                <% else %>
+                  <%= image_tag 'no_image', size: "40x40" %>
+                <% end %>
+                <% end %>
+              </td>
+              <td><%= member.response %></td>
+              <td><%= link_to "削除", post_reply_path(member.post, member), method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div>
+        <h3><i class="fas fa-thumbs-up"></i>いいね一覧</h3>
+        <table class="table">
+          <% @member.favorites.each do |members| %>
+            <tr>
+              <td>
+                <%= link_to post_path(members.post.id) do %>
+                <% if members.post.member.profile_image.attached? %>
+                  <%= image_tag members.post.member.profile_image, size: "40x40" %>
+                <% else %>
+                  <%= image_tag 'no_image', size: "40x40" %>
+                <% end %>
+                <% end %>
+              <td><%= members.post.member.account_name %></td>
+              <td><%= members.post.title %></td>
+              <td><%= members.post.introduction %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
