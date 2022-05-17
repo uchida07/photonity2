@@ -36,7 +36,7 @@
               </td>
               <td>
                 <%= link_to admin_post_path(members.id) do %>
-                  <%= members.introduction %>
+                  <%= members.introduction.truncate(20) %>
                 <% end %>
               </td>
               <td><%= link_to "削除",admin_member_path(members.id), method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
@@ -58,8 +58,8 @@
                 <% end %>
                 <% end %>
               </td>
-              <td><%= member.response %></td>
-              <td><%= link_to "削除", post_reply_path(member.post, member), method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
+              <td><%= member.response.truncate(20) %></td>
+              <td><%= link_to "削除", admin_post_reply_path(member.post, member), method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
             </tr>
           <% end %>
         </table>
@@ -79,7 +79,7 @@
                 <% end %>
               <td><%= members.post.member.account_name %></td>
               <td><%= members.post.title %></td>
-              <td><%= members.post.introduction %></td>
+              <td><%= members.post.introduction.truncate(20) %></td>
             </tr>
           <% end %>
         </table>

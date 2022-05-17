@@ -22,7 +22,7 @@
         </th>
         <th>
           <%= link_to post_path(posts.id), class:"link-black" do %>
-            <%= posts.introduction %>
+            <%= posts.introduction.truncate(20) %>
           <% end %>
         </th>
       </tr>

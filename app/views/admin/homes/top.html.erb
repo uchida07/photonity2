@@ -21,7 +21,7 @@
         <% end %>
       </td>
       <td>
-        <p>#本文</br><%= posts.introduction %></p>
+        <p>#本文</br><%= posts.introduction.truncate(20) %></p>
       </td>
     </tr>
     <% end %>

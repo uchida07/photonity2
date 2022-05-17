@@ -10,7 +10,7 @@ class Admin::MembersController < ApplicationController
     def show
       if admin_signed_in?
         @member = Member.find(params[:id])
-       else
+      else
         redirect_to new_admin_session_path
       end
     end
