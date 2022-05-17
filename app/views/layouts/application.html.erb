@@ -26,9 +26,9 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <div class = "pl-5">
             <i class="fas fa-search"></i>
-            <%= form_with url: search_tag_path, method: :get, local: true do |f| %>
-              <%= f.text_field :keyword, value: @keyword %>
-              <%= f.submit "タグ検索" %>
+            <%= form_with url: search_path, method: :get, local: true do |f| %>
+              <%= f.text_field :word, value: @word %>
+              <%= f.submit "ワード検索" %>
             <% end %>
             </div>
             <ul class="navbar-nav ml-auto">

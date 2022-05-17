@@ -7,8 +7,12 @@ class Public::PostsController < ApplicationController
     end
   end
 
+  def search
+     @posts = Post.search(params[:word])
+     @word = params[:word]
+  end
+
   def search_tag
-     @post = Post.new
      @posts = Post.search(params[:keyword])
      @keyword = params[:keyword]
   end
@@ -19,7 +23,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
   end
 
   def show

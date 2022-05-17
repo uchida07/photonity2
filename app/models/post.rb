@@ -6,7 +6,9 @@ class Post < ApplicationRecord
   def favorited_by?(member)
     favorites.exists?(member_id: member.id)
   end
-  def self.search(search_word)
-    Post.where(['tag LIKE ?', "#{search_word}"])
+
+  def self.search(word)
+    Post.where(["title like? OR introduction like? OR machine like? OR tag like ?", "%#{word}%", "%#{word}%", "%#{word}%", "%#{word}%"])
   end
+
 end

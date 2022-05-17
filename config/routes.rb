@@ -27,6 +27,8 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :replies, only: [:create, :destroy]
     end
+    get 'search' => 'posts#search'
+    get "search_index" => "posts#search_index"
     get "search_tag" => "posts#search_tag"
     get "tag_index" => "posts#tag_index"
   end

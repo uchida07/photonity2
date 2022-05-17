@@ -12,13 +12,6 @@
         <% end %>
         <p>アカウント名</br><%= @member.account_name %></p>
         <p>自己紹介</br><%= @member.introduction %></p>
-
-        <p>
-          <% if member_signed_in? && current_member.id == @member.id %>
-            <p><i class="fas fa-plus-circle"></i><%= link_to "新規投稿", new_post_path %></p>
-            <i class="fas fa-user-cog"></i><%= link_to "プロフィール編集", edit_member_path %>
-          <% end %>
-        </p>
       </div>
     </div>
     <div class="col-lg-8">
