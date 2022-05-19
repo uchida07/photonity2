@@ -11,7 +11,7 @@
             <% if posts.member.profile_image.attached? %>
               <%= image_tag posts.member.profile_image, size: "40x40" %>
             <% else %>
-              <%= image_tag 'no_image', size: "40x40" %>
+              <%= image_tag asset_path("no_image.jpg"), size: "40x40" %>
             <% end %>
           <% end %>
         </th>
