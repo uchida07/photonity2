@@ -10,7 +10,7 @@
         <% if @member.profile_image.attached? %>
           <%= image_tag @member.profile_image, size: "200x200" %>
         <% else %>
-          <%= image_tag 'no_image', size: "200x200" %>
+          <%= image_tag asset_path("no_image.jpg"), size: "200x200" %>
         <% end %>
         <p><i class="fas fa-user-circle"></i>アカウント名</br><%= @member.account_name %></p>
         <p>自己紹介</br><%= @member.introduction %></p>
@@ -35,7 +35,7 @@
                   <% if @member.profile_image.attached? %>
                     <%= image_tag @member.profile_image, size: "40x40" %>
                   <% else %>
-                    <%= image_tag 'no_image', size: "40x40" %>
+                    <%= image_tag asset_path("no_image.jpg"), size: "40x40" %>
                   <% end %>
                 <% end %>
               </td>
@@ -67,7 +67,7 @@
                 <% if @member.profile_image.attached? %>
                   <%= image_tag @member.profile_image, size: "40x40" %>
                 <% else %>
-                  <%= image_tag 'no_image', size: "40x40" %>
+                  <%= image_tag asset_path("no_image.jpg"), size: "40x40" %>
                 <% end %>
                 <% end %>
               </td>
@@ -87,7 +87,7 @@
                 <% if members.post.member.profile_image.attached? %>
                   <%= image_tag members.post.member.profile_image, size: "40x40" %>
                 <% else %>
-                  <%= image_tag 'no_image', size: "40x40" %>
+                  <%= image_tag asset_path("no_image.jpg"), size: "40x40" %>
                 <% end %>
                 <% end %>
               <td><%= members.post.member.account_name %></td>
