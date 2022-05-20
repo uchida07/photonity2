@@ -22,11 +22,11 @@
 - カメラを始めたくて情報を収集したいとき
 - 疑問に思ったことを質問したいとき
 
-## 実装機能リストURL
- https://docs.google.com/spreadsheets/d/1ush6Fl5v6TKZSuM0ShVU6zwkDTOvgSF4TvGa6sV0bVw/edit?usp=sharing
-
 ## 設計書
-
+- 画面遷移図　https://drive.google.com/file/d/1IM1v0ONIIkLKh3HpxwNl2z9efk_xngI4/view?usp=sharing
+- ER図　https://drive.google.com/file/d/1hRTDsCz_7tPQXR6dl8b8nXOlRDVZDCfV/view?usp=sharing
+- アプリケーション詳細設計　https://docs.google.com/spreadsheets/d/1NKFQLeN_gHVou3aPwBhX9hiIq1CiDlow/edit?usp=sharing&ouid=107474845680901079653&rtpof=true&sd=true
+- テーブル定義書 https://docs.google.com/spreadsheets/d/1hfZH7d5-HzsoijlnJad4mTpmdgJo4F4A/edit?usp=sharing&ouid=107474845680901079653&rtpof=true&sd=true
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -36,4 +36,5 @@
 - IDE：Cloud9
 
 ## 使用素材
-- 使用検討中
+- ぱくたそ　https://www.pakutaso.com/
+- FontAwesome　https://fontawesome.com/s

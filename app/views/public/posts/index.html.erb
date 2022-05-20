@@ -1,31 +1,28 @@
 <div class="background">
-<div class = "container">
-  <div class = "pt-5">
-    <h1><i class="fas fa-list"></i>投稿一覧</h1>
+  <div class = "container">
+    <div class = "pt-5">
+      <h1><i class="fas fa-list"></i>投稿一覧</h1>
+    </div>
+    <table class="table">
+      <% @posts.each do |posts| %>
+        <tr>
+          <td>
+            <%= link_to post_path(posts.id) do %>
+              <% if posts.member.profile_image.attached? %>
+                <%= image_tag posts.member.profile_image, size: "70x70" %>
+              <% else %>
+                <%= image_tag asset_path("no_image.jpg"), size: "70x70" %>
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <p>#タイトル</br><%= link_to posts.title, post_path(posts.id), class:"link-black" %></p>
+          </td>
+          <td>
+            <p>#本文</br><%= posts.introduction.truncate(20) %></p>
+          </td>
+        </tr>
+      <% end %>
+    </table>
   </div>
-  <table class="table">
-    <% @posts.each do |posts| %>
-    <tr>
-      <td>
-        <%= link_to post_path(posts.id) do %>
-          <% if posts.member.profile_image.attached? %>
-            <%= image_tag posts.member.profile_image, size: "70x70" %>
-          <% else %>
-            <%= image_tag asset_path("no_image.jpg"), size: "70x70" %>
-          <% end %>
-        <% end %>
-      </td>
-      <td>
-        <p>#タイトル</br>
-        <%#= link_to post_path(posts.id), class="link-black" do %>
-          <%= link_to posts.title, post_path(posts.id), class:"link-black" %></p>
-        <%# end %>
-      </td>
-      <td>
-        <p>#本文</br><%= posts.introduction.truncate(20) %></p>
-      </td>
-    </tr>
-    <% end %>
-  </table>
-</div>
 </div>

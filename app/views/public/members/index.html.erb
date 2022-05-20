@@ -1,9 +1,9 @@
 <div class = "container">
   <div class = "pt-5">
-  <h1>会員一覧</h1>
+    <h1>会員一覧</h1>
   </div>
   <table class="table">
-  <% @members.each do |members| %>
+    <% @members.each do |members| %>
       <tr>
         <td>
           <% if members.profile_image.attached? %>
@@ -14,7 +14,7 @@
         </td>
         <td ><p>#プロフィール名</p><%= members.account_name %></td>
         <td><p>#自己紹介</p><%= members.introduction %></td>
-        </tr>
-        <% end %>
-    </table>
+      </tr>
+    <% end %>
+  </table>
 </div>

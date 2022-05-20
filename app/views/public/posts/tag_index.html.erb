@@ -1,14 +1,12 @@
 <div class="background">
-<div class = "container">
-  <div class = "pt-5">
-    <h1><i class="fas fa-tags"></i>タグ一覧</h1>
-  </div>
-  <div>
-    <% @tag.each do |tags|%>
-
+  <div class = "container">
+    <div class = "pt-5">
+      <h1><i class="fas fa-tags"></i>タグ一覧</h1>
+    </div>
+    <div>
+      <% @tag.each do |tags|%>
         <p><i class="fas fa-tag"></i><%= link_to tags.tag, search_tag_path(keyword: tags.tag), class:"link-black" %></p>
-
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
 </div>
