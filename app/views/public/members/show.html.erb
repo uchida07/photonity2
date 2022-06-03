@@ -72,7 +72,9 @@
                 <% end %>
               </td>
               <td><%= member.response.truncate(20) %></td>
+              <% if member_signed_in? && current_member.id == @member.id %>
               <td><%= link_to "削除", post_reply_path(member.post, member), method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
+              <% end %>
             </tr>
           <% end %>
         </table>
