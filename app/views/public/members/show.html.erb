@@ -1,105 +1,104 @@
 <div class="background">
-<div class = "container">
-  <div class = "pt-5">
-    <h1><i class="fas fa-user-circle"></i>プロフィール情報</h1>
-  </div>
-  <div class = "row">
-    <div class="col-lg-4">
-      <div class = "text-center">
-        <div class = "back-coler-white">
-        <% if @member.profile_image.attached? %>
-          <%= image_tag @member.profile_image, size: "200x200" %>
-        <% else %>
-          <%= image_tag asset_path("no_image.jpg"), size: "200x200" %>
-        <% end %>
-        <p><i class="fas fa-user-circle"></i>アカウント名</br><%= @member.account_name %></p>
-        <p>自己紹介</br><%= @member.introduction %></p>
-
-        <p>
-          <% if member_signed_in? && current_member.id == @member.id %>
-            <p><i class="fas fa-plus-circle"></i><%= link_to "新規投稿", new_post_path, class:"link-black" %></p>
-            <i class="fas fa-user-cog"></i><%= link_to "プロフィール編集", edit_member_path, class:"link-black" %>
-          <% end %>
-        </p>
+  <div class = "container">
+    <div class = "pt-5">
+      <h1><i class="fas fa-user-circle"></i>プロフィール情報</h1>
+    </div>
+    <div class = "row">
+      <div class="col-lg-4">
+        <div class = "text-center">
+          <div class = "back-coler-white">
+            <% if @member.profile_image.attached? %>
+              <%= image_tag @member.profile_image, size: "200x200" %>
+            <% else %>
+              <%= image_tag asset_path("no_image.jpg"), size: "200x200" %>
+            <% end %>
+            <p><i class="fas fa-user-circle"></i>アカウント名<br><%= @member.account_name %></p>
+            <p>自己紹介<br><%= @member.introduction %></p>
+            <p>
+              <% if member_signed_in? && current_member.id == @member.id %>
+                <p><i class="fas fa-plus-circle"></i><%= link_to "新規投稿", new_post_path, class:"link-black" %></p>
+                <i class="fas fa-user-cog"></i><%= link_to "プロフィール編集", edit_member_path, class:"link-black" %>
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div>
+          <h3><i class="fas fa-list"></i>投稿一覧</h3>
+          <table class="table">
+            <% @member.posts.each do |members| %>
+              <tr>
+                <td>
+                  <%= link_to post_path(members.id) do %>
+                    <% if @member.profile_image.attached? %>
+                      <%= image_tag @member.profile_image, size: "40x40" %>
+                    <% else %>
+                      <%= image_tag asset_path("no_image.jpg"), size: "40x40" %>
+                    <% end %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to post_path(members.id), class:"link-black" do %>
+                    <%= members.title %>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to post_path(members.id), class:"link-black" do %>
+                    <%= members.introduction.truncate(20) %>
+                  <% end %>
+                </td>
+                <% if member_signed_in? && current_member.id == @member.id %>
+                  <td><%= link_to "編集",edit_post_path(members.id)%></td>
+                  <td><%= link_to "削除",member_path(members.id), method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
+                <% end %>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+        <div>
+          <h3><i class="fas fa-paper-plane"></i>返信・コメント一覧</h3>
+          <table class="table">
+            <% @member.replies.each do |member| %>
+              <tr>
+                <td>
+                  <%= link_to post_path(member.post.id) do %>
+                    <% if @member.profile_image.attached? %>
+                      <%= image_tag @member.profile_image, size: "40x40" %>
+                    <% else %>
+                      <%= image_tag asset_path("no_image.jpg"), size: "40x40" %>
+                    <% end %>
+                  <% end %>
+                </td>
+                <td><%= member.response.truncate(20) %></td>
+                <% if member_signed_in? && current_member.id == @member.id %>
+                  <td><%= link_to "削除", post_reply_path(member.post, member), method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
+                <% end %>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+        <div>
+          <h3><i class="fas fa-thumbs-up"></i>いいね一覧</h3>
+          <table class="table">
+            <% @member.favorites.each do |members| %>
+              <tr>
+                <td>
+                  <%= link_to post_path(members.post.id) do %>
+                    <% if members.post.member.profile_image.attached? %>
+                      <%= image_tag members.post.member.profile_image, size: "40x40" %>
+                    <% else %>
+                      <%= image_tag asset_path("no_image.jpg"), size: "40x40" %>
+                    <% end %>
+                  <% end %>
+                <td><%= members.post.member.account_name %></td>
+                <td><%= members.post.title %></td>
+                <td><%= members.post.introduction.truncate(20) %></td>
+              </tr>
+            <% end %>
+          </table>
         </div>
       </div>
     </div>
-    <div class="col-lg-8">
-      <div>
-        <h3><i class="fas fa-list"></i>投稿一覧</h3>
-        <table class="table">
-          <% @member.posts.each do |members| %>
-            <tr>
-              <td>
-                <%= link_to post_path(members.id) do %>
-                  <% if @member.profile_image.attached? %>
-                    <%= image_tag @member.profile_image, size: "40x40" %>
-                  <% else %>
-                    <%= image_tag asset_path("no_image.jpg"), size: "40x40" %>
-                  <% end %>
-                <% end %>
-              </td>
-              <td>
-                <%= link_to post_path(members.id), class:"link-black" do %>
-                  <%= members.title %>
-                <% end %>
-              </td>
-              <td>
-                <%= link_to post_path(members.id), class:"link-black" do %>
-                  <%= members.introduction.truncate(20) %>
-                <% end %>
-              </td>
-              <% if member_signed_in? && current_member.id == @member.id %>
-                <td><%= link_to "編集",edit_post_path(members.id)%></td>
-                <td><%= link_to "削除",member_path(members.id), method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
-              <% end %>
-            </tr>
-          <% end %>
-        </table>
-      </div>
-      <div>
-        <h3><i class="fas fa-paper-plane"></i>返信・コメント一覧</h3>
-        <table class="table">
-          <% @member.replies.each do |member| %>
-            <tr>
-              <td>
-                <%= link_to post_path(member.post.id) do %>
-                <% if @member.profile_image.attached? %>
-                  <%= image_tag @member.profile_image, size: "40x40" %>
-                <% else %>
-                  <%= image_tag asset_path("no_image.jpg"), size: "40x40" %>
-                <% end %>
-                <% end %>
-              </td>
-              <td><%= member.response.truncate(20) %></td>
-              <% if member_signed_in? && current_member.id == @member.id %>
-              <td><%= link_to "削除", post_reply_path(member.post, member), method: :delete, "data-confirm" => "本当に削除しますか？"%></td>
-              <% end %>
-            </tr>
-          <% end %>
-        </table>
-      </div>
-      <div>
-        <h3><i class="fas fa-thumbs-up"></i>いいね一覧</h3>
-        <table class="table">
-          <% @member.favorites.each do |members| %>
-            <tr>
-              <td>
-                <%= link_to post_path(members.post.id) do %>
-                <% if members.post.member.profile_image.attached? %>
-                  <%= image_tag members.post.member.profile_image, size: "40x40" %>
-                <% else %>
-                  <%= image_tag asset_path("no_image.jpg"), size: "40x40" %>
-                <% end %>
-                <% end %>
-              <td><%= members.post.member.account_name %></td>
-              <td><%= members.post.title %></td>
-              <td><%= members.post.introduction.truncate(20) %></td>
-            </tr>
-          <% end %>
-        </table>
-      </div>
-    </div>
   </div>
-</div>
 </div>
